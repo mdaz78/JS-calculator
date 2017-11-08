@@ -20,7 +20,7 @@ body {
   padding-bottom: 10px;
 }
 
-#screenArea {
+#input {
   width: 85%;
   height: 65px;
   margin-left: auto;
@@ -28,20 +28,14 @@ body {
   border: 2px solid #b4b39d;
   border-radius: 6px;
   background-color: #c3c2ab;
-}
-
-#screen {
-  margin-right: 10px;
+  display: block;
+  text-align: right;
   font-size: 35px;
 }
 
-#history {
-  position: relative;
-  height: 10px;
-  bottom: 17px;
-  margin-right: 14px;
-  color: #8b8b7b;
-  font-size: 12px;
+
+input {
+  max-width: 100%;
 }
 
 #buttons {
