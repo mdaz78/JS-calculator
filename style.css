@@ -65,14 +65,14 @@ button:active {
   box-shadow: none;
 }
 
-.equalButton {
+#equalButton {
   position: absolute;
   margin-left: 12px;
   margin-top: -50px;
   height: 90px;
 }
 
-.zeroButton {
+#zeroButton {
   width: 117px;
 }
 
