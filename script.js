@@ -18,18 +18,37 @@ button.forEach(function(element) {
 
 
 function addToScreen(val) {
-  let lastDigit = screen.value[screen.value.length - 1];
-  if (lastDigit == "+" || lastDigit == "-" || lastDigit == "*" || lastDigit == "/" || lastDigit == ".") {
-    if(val != '+' && val != '-' && val != '*' && val != '/' && val != '.') {
+  if (val == '.') {
+    if (screen.value.length === 0) {
+      screen.value += val;
+    } else {
+      for (let i = screen.value.length - 1; i >= 0; i--) {
+        let check = screen.value[i];
+        if (check == '+' || check == '-' || check == '*' || check == '/') {
+          screen.value += val;
+          break;
+        } else if (check == '.') {
+          screen.value += '';
+          break;
+        } else if (i == 0 && check != ".") {
+          screen.value += val;
+        }
+      }
+    }
+  } else {
+    let lastDigit = screen.value[screen.value.length - 1];
+
+    if (lastDigit == "+" || lastDigit == "-" || lastDigit == "*" || lastDigit == "/" || lastDigit == ".") {
+     if (val != '+' && val != '-' && val != '*' && val != '/' && val != '.') {
       screen.value += val;  
     } else {
       screen.value = screen.value.slice(0, screen.value.length - 1) + val;
     }
   } 
-
   else {
     screen.value += val;
   }
+ }
 }
 
 
@@ -53,12 +72,18 @@ function reset() {
 function equalTo() {
   let lastDigit = screen.value[screen.value.length - 1];
   let result;
-  if (lastDigit == "+" || lastDigit == "-" || lastDigit == "*" || lastDigit == "/" || lastDigit == ".") {
-    result = evaluate(screen.value.slice(0, screen.value.length - 1));
+
+  if (screen.value == "" || screen.value == "undefined" || screen.value == ".") {
+    screen.value = "";
   } else {
-    result = evaluate(screen.value);
+
+    if (lastDigit == "+" || lastDigit == "-" || lastDigit == "*" || lastDigit == "/" || lastDigit == ".") {
+      result = evaluate(screen.value.slice(0, screen.value.length - 1));
+    } else {
+      result = evaluate(screen.value);
+    }
+    screen.value = result;
   }
-  screen.value = result;
 }
 
 let evaluate = (val) => {
