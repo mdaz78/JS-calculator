@@ -70,22 +70,21 @@ function reset() {
 }
 
 function equalTo() {
-  let lastDigit = screen.value[screen.value.length - 1];
-  let result;
+  let val = screen.value;
+  let lastDigit, result;
 
-  if (screen.value == "" || screen.value == "undefined" || screen.value == ".") {
+  if (val == "" || val == "undefined" || val == ".") {
     screen.value = "";
   } else {
-
-    if (lastDigit == "+" || lastDigit == "-" || lastDigit == "*" || lastDigit == "/" || lastDigit == ".") {
-      result = evaluate(screen.value.slice(0, screen.value.length - 1));
-    } else {
-      result = evaluate(screen.value);
+    let lastDigit = val[val.length - 1];
+    while(lastDigit == "+" || lastDigit == "-" || lastDigit == "*" || lastDigit == "/" || lastDigit == ".") {
+      val = val.slice(0, val.length - 1);
+      lastDigit = val[val.length - 1];
     }
-    screen.value = result;
+    screen.value = evaluate(val);
   }
 }
 
 let evaluate = (val) => {
   return eval(val);
-}
+};
