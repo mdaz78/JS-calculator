@@ -8,7 +8,7 @@ button.forEach(function(element) {
     } else if (element.value == 'ce') {
       backspace();
     } else if (element.value == "=") {
-      calculate();
+      equalTo();
     } else {
       let val = element.getAttribute("value");
       addToScreen(val);
@@ -39,8 +39,19 @@ function reset() {
   screen.value = '';
 }
 
-function calculate() {
-  let cal = screen.value;
-  let result = eval(cal);
+function equalTo() {
+  let lastDigit = screen.value[screen.value.length - 1];
+  let result;
+  console.log(lastDigit);
+  console.log(lastDigit == '+');
+  if (lastDigit == "+" || lastDigit == "-" || lastDigit == "*" || lastDigit == "/" || lastDigit == ".") {
+    result = evaluate(screen.value.slice(0, screen.value.length - 1));
+  } else {
+    result = evaluate(screen.value);
+  }
   screen.value = result;
+}
+
+let evaluate = (val) => {
+  return eval(val);
 }
