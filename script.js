@@ -18,7 +18,18 @@ button.forEach(function(element) {
 
 
 function addToScreen(val) {
-  screen.value += val;
+  let lastDigit = screen.value[screen.value.length - 1];
+  if (lastDigit == "+" || lastDigit == "-" || lastDigit == "*" || lastDigit == "/" || lastDigit == ".") {
+    if(val != '+' && val != '-' && val != '*' && val != '/' && val != '.') {
+      screen.value += val;  
+    } else {
+      screen.value = screen.value.slice(0, screen.value.length - 1) + val;
+    }
+  } 
+
+  else {
+    screen.value += val;
+  }
 }
 
 
@@ -42,8 +53,6 @@ function reset() {
 function equalTo() {
   let lastDigit = screen.value[screen.value.length - 1];
   let result;
-  console.log(lastDigit);
-  console.log(lastDigit == '+');
   if (lastDigit == "+" || lastDigit == "-" || lastDigit == "*" || lastDigit == "/" || lastDigit == ".") {
     result = evaluate(screen.value.slice(0, screen.value.length - 1));
   } else {
