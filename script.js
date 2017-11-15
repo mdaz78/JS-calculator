@@ -81,7 +81,8 @@ function equalTo() {
       val = val.slice(0, val.length - 1);
       lastDigit = val[val.length - 1];
     }
-    screen.value = evaluate(val);
+    tempResult = evaluate(val);
+    screen.value = tempResult.toFixed(2);
   }
 }
 
